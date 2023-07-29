@@ -1,34 +1,65 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+- next.js文档: https://nextjs.org/
+- 在 next.js 中使用 antd: https://ant.design/docs/react/use-with-next-cn
 
-## Getting Started
+## 本地启动
 
-First, run the development server:
+当前项目要求 node >= 16.20.0, 推荐使用 nvm 切换 node 版本
 
 ```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
+# 项目环境要求 node >= 16.20.0
+nvm use # 切换node版本( 会根据 .nvmrc 配置的版本号进行切换 )
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+```bash
+yarn # 安装依赖
+yarn dev # 本地启动(开发环境)
+yarn dev:test # 本地启动(测试环境)
+```
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## 开发、测试、生产部署命令
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+```bash
+# 开发
+yarn # 安装依赖
+yarn build:dev # 构建
+yarn start # 启动
 
-## Learn More
+# 测试
+yarn
+yarn build:test
+yarn start
 
-To learn more about Next.js, take a look at the following resources:
+# 生产
+yarn
+yarn build:prod
+yarn start
+```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 代码规范!!!
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+安装 vscode 插件 `ESLint` 和 `Prettier - Code formatter`~~~ 保存代码时项目会自动格式化代码, 并且进行 lint 检查
 
-## Deploy on Vercel
+- ESLint 默认会检测 `pages/, app/, components/, lib/, src/` 目录下的文件
+- 注: 代码提交前会自动进行 lint 检查, 如果不符合规范, 无法提交代码
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+## 如何修改后端接口地址?
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+```bash
+.env.dev # 开发环境后端接口地址
+.env.test # 测试环境后端接口地址
+.env.prod # 生产环境后端接口地址
+```
+
+---
+
+## 创建页面文件对应页面路径
+
+- `src/app/page.tsx`: /
+- `src/app/about/page.tsx`: /about
+- `src/app/about/detail/page.tsx`: /about/detail
+- `src/app/(about)/detail/page.tsx`: /detail, 小括号包裹的目录会被忽略
+- `app/blog/[id]/page.tsx`: /blog/:id
+
+## 页面跳转
+
+优先使用 `<Link>` 组件, 其次是 useRouter(), useRouter 仅支持客户端组件
