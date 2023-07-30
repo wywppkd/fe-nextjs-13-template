@@ -1,5 +1,5 @@
 'use client';
-import { getUserList } from '@/app/_api/about';
+import { getUserList } from '@/api/about';
 import { IconFont } from '@/lib/IconFont';
 import React, { useEffect } from 'react';
 

@@ -1,4 +1,4 @@
-import { getUserList } from '@/app/_api/about';
+import { getUserList } from '@/api/about';
 import CreateForm from './_components/CreateForm';
 import styles from './page.module.scss';
 
