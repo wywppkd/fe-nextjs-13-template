@@ -1,4 +1,4 @@
-import request from '../_utils/request';
+import request from '@/utils/request';
 
 type AboutParams = {
   platformType: string;
